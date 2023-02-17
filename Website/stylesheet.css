@@ -19,8 +19,13 @@ body {
 
 /* Navigation Bar */
 .topBar {
-	width: 90%;
+  width: 90%;
 	margin: 0 auto;
+
+  /* makes sure logo and navigation stay seperate */
+  /* NOTE FOR TEACHER: Dies sollte das CSS Grid auch implementieren */
+  display: grid;
+  grid-template-columns: [logo] min-content [navbar] 75%;
 }
 
 header {
@@ -91,20 +96,33 @@ nav a:hover::before {
   width: 100%;
 }
 
-/* Navigation into Burger Box */
-@media screen {
-    
-}
-
 /* Body */
 article {
     width: 75%;
 }
 
+.container {
+  display: grid;
+  width: 85%;
+  grid-template-columns: [weather_column] 2fr [column2-start] 2fr [column2-end column3-start] 2fr [column3-end column4-start] 2fr [column4-end];
+  grid-template-rows: repeat(10, 1fr);
+}
+
+.item_a {
+  width: 70%;
+  grid-column: 1 / span 1;
+  grid-row: 1 / span 8;
+}
+
+.item_b, .item_c, .item_d {
+  grid-column: span 1;
+  grid-row: 1 / span 1;
+}
+
 /* Footer */
 
 footer {
-    position: absolute;
+    position: fixed;
     bottom: 0;
     width: 100%;
     height: 30px;
@@ -122,3 +140,7 @@ footer.impressum {
     text-align: center;
 }
 
+/* Navigation into Burger Box */
+@media screen {
+    
+}
