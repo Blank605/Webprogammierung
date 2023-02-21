@@ -43,24 +43,49 @@
                 <form action="open_timetable"> <!-- function not implemented yet -->
                 <div class="item_b">
                     <form action="">
-                        <label for="name">Enter your subject area:</label>
-                        <input type="text" class="text" id="name" />
+                        <label for="faculty">Enter your subject area:</label>
                         <br />
-                        <input type="submit" value="submit"></input>
+                        <select name="faculty" id="faculty">
+							<option value="-1" selected="selected">Fachrichtung wählen</option>
+							<option value="0">.gnupg</option>
+                            <option value="1">IP</option>
+                            <option value="2">bank</option>
+                            <option value="3">bauwesen</option>
+                            <option value="4">dl</option>
+                            <option value="5">elektrotechnik</option>
+                            <option value="6">fm</option>
+                            <option value="7">handel</option>
+                            <option value="8">iba</option>
+                            <option value="9">immobilien</option>
+                            <option value="10">industrie</option>
+                            <option value="11">informatik</option>
+                            <option value="12">maschinenbau</option>
+                            <option value="13">ppm</option>
+                            <option value="14">spedition</option>
+                            <option value="15">steuern</option>
+                            <option value="16">tourismus</option>
+                            <option value="17">versicherung</option>
+                            <option value="18">wi</option>
+                            <option value="19">andere</option>
+                        </select>
                     </form>
                 </div>
                 <div class="item_c">
                     <form action="">
-                        <label for="name">Enter your semester:</label>
-                        <input type="text" class="text" id="name" />
+                        <label for="semester">Enter your semester:</label>
                         <br />
-                        <input type="submit" value="submit"></input>
+                        <select name="semester" id="semester">
+							<option value="-1" selected="selected">Kurs Wählen</option>  
+                        </select>
                     </form>
                 </div>
                 <div class="item_d">
                     <form action="">
-                        <label for="name">Enter your course:</label>
-                        <input type="text" class="text" id="name" />
+                        <label for="course">Enter your course:</label>
+                        <br />
+                        <select name="course" id="course">
+							<option value="-1" selected="selected">Kurs Wählen</option>  
+                        </select>
                         <br />
                         <input type="submit" value="submit"></input>
                     </form>
