@@ -6,8 +6,11 @@ const app = express();
 app.use(cookieParser());
 app.use(bodyParser.json());
 
+const PORT = 8081;
 
 var users = [];
+let comments = [];
+
 
 const Personalisierung = async function Personalisierung(req, res, next) {
     let user = {
@@ -29,19 +32,40 @@ const Personalisierung = async function Personalisierung(req, res, next) {
 }
 app.use(Personalisierung);
 
+function onload() {
+    updateComments();
+	const commentBtn = document.getElementById("commentBtn");
+    commentBtn.addEventListener("click", createComment);
+}
+
+app.get('/api/comments', (req, res) => {
+	res.json(comments);
+  });
+  
+  app.post('/api/comments', (req, res) => {
+	const { text } = req.body;
+	const newComment = {
+	  id: comments.length + 1,
+	  text,
+	};
+	comments.push(newComment);
+	res.json(newComment);
+  });
+
+
 app.get('/', (req, res) => {
-	res.cookie("lastvisited","/home",{httpOnly: true, SameSite: "None"});
+	res.cookie("lastvisited_home","/home",{httpOnly: true, SameSite: "None"});
 	res.sendFile('/home.html', { root: 'Website' });
 });
 app.get('/index', (req, res) => {
-    res.cookie("lastvisited","/home",{httpOnly: true, SameSite: "None"});
+    res.cookie("lastvisited_home","/home",{httpOnly: true, SameSite: "None"});
 	res.sendFile('/home.html', { root: 'Website' });
 });
 app.get('/TaskSummary', (req, res) => {
-    res.cookie("lastvisited","/home",{httpOnly: true, SameSite: "None"});
+    res.cookie("lastvisited_tasksummary","/home",{httpOnly: true, SameSite: "None"});
 	res.sendFile('/TaskSummary.html', { root: 'Website' });
 });
 app.use(express.static('Website'));
-app.listen(8080, () => {
-	console.log("Server started on port 8081");
+app.listen(PORT, () => {
+	console.log("Server started on port: ", PORT);
 });

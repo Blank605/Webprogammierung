@@ -5,10 +5,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <link rel="stylesheet" href="./stylesheet.css">
-        <script type="text/javascript" src="./script.js"></script>
+        <script type="text/javascript" src="../script.js"></script>
+        <script type="text/javascript" src="../comments.js" defer></script>
         <title>HWR Summary</title>
     </head>
-    <body>
+    <body onload = onload()>
         <header>
             <div class="topBar">
                 <div class="item_logo">
@@ -99,6 +100,66 @@
                 <div class="item_g">
                 </div>
             </div>
+            <!-- <div class="kommentare">
+                <h2><span>Kommentare</span></h2>
+                <textarea id="commentTextarea" name="Kommentar"></textarea>
+                <button id="commentBtn">Speichern</button>
+                <div id="comment-container"></div>
+            </div> -->
+
+            <form id="comment-form">
+                <label for="comment-input">Add a comment:</label>
+                <input type="text" id="comment-input" name="comment">
+                <button type="submit">Submit</button>
+              </form>
+              <div id="comments-container"></div>
+
+              <script>
+                const form = document.getElementById('comment-form');
+                const commentInput = document.getElementById('comment-input');
+                const commentsContainer = document.getElementById('comments-container');
+                
+                form.addEventListener('submit', (event) => {
+                  event.preventDefault();
+                  const comment = commentInput.value;
+                  commentInput.value = '';
+                  
+                  fetch('/api/comments', {
+                    method: 'POST',
+                    headers: {
+                      'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ text: comment }),
+                  })
+                    .then(response => response.json())
+                    .then(newComment => {
+                      comments.push(newComment);
+                      updateComments();
+                    });
+                });
+                
+                function updateComments() {
+                  commentsContainer.innerHTML = '';
+                  comments.forEach(comment => {
+                    const commentElement = document.createElement('div');
+                    commentElement.innerHTML = `
+                      <h3>Comment ${comment.id}</h3>
+                      <p>${comment.text}</p>
+                    `;
+                    commentsContainer.appendChild(commentElement);
+                  });
+                }
+                
+                fetch('/api/comments')
+                  .then(response => response.json())
+                  .then(data => {
+                    comments = data;
+                    updateComments();
+                  });
+              </script>
+            <br>
+            <br>
+            <br>
         </div>
         <footer>
             <div class="impressum">
