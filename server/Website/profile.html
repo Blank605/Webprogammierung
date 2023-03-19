@@ -7,7 +7,7 @@
         <link rel="stylesheet" href="./stylesheet.css">
         <title>HWR Summary</title>
     </head>
-    <body>
+    <body onload="updateComments">
         <header>
             <div class="topBar">
                 <div class="item_logo">
@@ -31,15 +31,23 @@
             <hr />
 
 
+            <form id="comment-form">
+              </form>
+              <div id="comments-container"></div>
+
               <script>
+                const form = document.getElementById('comment-form');
+                const commentInput = document.getElementById('comment-input');
                 const commentsContainer = document.getElementById('comments-container');
+                const ucookie = req.cookies.usercookie;
                 
-                function updateComments(req) {
+               
+                
+                function updateComments() {
                   commentsContainer.innerHTML = '';
                   comments.forEach(comment => {
                     const commentElement = document.createElement('div');
                     commentElement.innerHTML = `
-                      <h3>Comment ${comment.id}</h3>
                       <p>${comment.text}</p>
                       <small>by user: ${comment.usercookie}</small>
                     `;

@@ -46,7 +46,6 @@ app.get('/api/comments', (req, res) => {
 	const { text } = req.body;
 	let usercookie = req.cookies.usercookie;
 	const newComment = {
-	  id: comments.length + 1,
 	  text,
 	  usercookie,
 	};
