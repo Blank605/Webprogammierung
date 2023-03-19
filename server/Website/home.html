@@ -22,6 +22,7 @@
                             <li><a href="https://webmail.stud.hwr-berlin.de/appsuite/signin"><img src="./images/envelope-at.svg" alt="logo"> Mail</a></li>
                             <li><a href="https://moodle.hwr-berlin.de/login/index.php">Moodle</a></li>
                             <li><a href="https://cloud.hwr-berlin.de">Cloud</a></li>
+                            <li><a href="./profile">Profile</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -100,12 +101,6 @@
                 <div class="item_g">
                 </div>
             </div>
-            <!-- <div class="kommentare">
-                <h2><span>Kommentare</span></h2>
-                <textarea id="commentTextarea" name="Kommentar"></textarea>
-                <button id="commentBtn">Speichern</button>
-                <div id="comment-container"></div>
-            </div> -->
 
             <form id="comment-form">
                 <label for="comment-input">Add a comment:</label>
@@ -145,6 +140,7 @@
                     commentElement.innerHTML = `
                       <h3>Comment ${comment.id}</h3>
                       <p>${comment.text}</p>
+                      <small>by user: ${comment.usercookie}</small>
                     `;
                     commentsContainer.appendChild(commentElement);
                   });

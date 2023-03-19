@@ -16,7 +16,7 @@
                 <div class="item_nav">
                     <nav>
                         <ul>
-                            <li><a href="/index">Startseite</a></li>
+                            <li><a href="./TaskSummary.html">Aufgabenerklärung</a></li>
                             <li><a href="https://webmail.stud.hwr-berlin.de/appsuite/signin"><img src="./images/envelope-at.svg" alt="logo"> Mail</a></li>
                             <li><a href="https://moodle.hwr-berlin.de/login/index.php">Moodle</a></li>
                             <li><a href="https://cloud.hwr-berlin.de">Cloud</a></li>
@@ -26,11 +26,35 @@
                 </div>
             </div>
         </header>
-        <h1>Aufgabenerklärung</h1>
-        <br />
-        <article>
-            Diese Seite soll als eine Übersicht und als schneller Zugang zu den wichtigsten Seiten für Studierende der Hochschule für Wirtschaft und Recht in Berlin dienen.
-        </article>
+        <div class="content">
+            <h1>Deine Kommentare</h1>
+            <hr />
+
+
+              <script>
+                const commentsContainer = document.getElementById('comments-container');
+                
+                function updateComments(req) {
+                  commentsContainer.innerHTML = '';
+                  comments.forEach(comment => {
+                    const commentElement = document.createElement('div');
+                    commentElement.innerHTML = `
+                      <h3>Comment ${comment.id}</h3>
+                      <p>${comment.text}</p>
+                      <small>by user: ${comment.usercookie}</small>
+                    `;
+                    commentsContainer.appendChild(commentElement);
+                  });
+                }
+                
+                fetch('/api/comments')
+                  .then(response => response.json())
+                  .then(data => {
+                    comments = data;
+                    updateComments();
+                  });
+              </script>
+        </div>
         <footer>
             <div class="impressum">
                 Diese Webseite wurde erstellt von Marcel Burkhardt, Justin Burkhardt, Sascha Mannel, Fabian Schiemann.

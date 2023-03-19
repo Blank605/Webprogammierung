@@ -44,11 +44,13 @@ app.get('/api/comments', (req, res) => {
   
   app.post('/api/comments', (req, res) => {
 	const { text } = req.body;
+	let usercookie = req.cookies.usercookie;
 	const newComment = {
 	  id: comments.length + 1,
 	  text,
+	  usercookie,
 	};
-	comments.push(newComment);
+	comments.push(newComment, usercookie);
 	res.json(newComment);
   });
 
@@ -64,6 +66,10 @@ app.get('/index', (req, res) => {
 app.get('/TaskSummary', (req, res) => {
     res.cookie("lastvisited_tasksummary","/home",{httpOnly: true, SameSite: "None"});
 	res.sendFile('/TaskSummary.html', { root: 'Website' });
+});
+app.get('/profile', (req, res) => {
+    res.cookie("lastvisited_home","/home",{httpOnly: true, SameSite: "None"});
+	res.sendFile('/profile.html', { root: 'Website' });
 });
 app.use(express.static('Website'));
 app.listen(PORT, () => {
