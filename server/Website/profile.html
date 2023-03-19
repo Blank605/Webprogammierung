@@ -16,6 +16,7 @@
                 <div class="item_nav">
                     <nav>
                         <ul>
+                            <li><a href="/index">Startseite</a></li>
                             <li><a href="./TaskSummary.html">Aufgabenerklärung</a></li>
                             <li><a href="https://webmail.stud.hwr-berlin.de/appsuite/signin"><img src="./images/envelope-at.svg" alt="logo"> Mail</a></li>
                             <li><a href="https://moodle.hwr-berlin.de/login/index.php">Moodle</a></li>
@@ -39,13 +40,10 @@
                 const form = document.getElementById('comment-form');
                 const commentInput = document.getElementById('comment-input');
                 const commentsContainer = document.getElementById('comments-container');
-                const ucookie = req.cookies.usercookie;
-                
-               
                 
                 function updateComments() {
-                  commentsContainer.innerHTML = '';
-                  comments.forEach(comment => {
+                    commentsContainer.innerHTML = '';
+                    comments.forEach(comment => {
                     const commentElement = document.createElement('div');
                     commentElement.innerHTML = `
                       <p>${comment.text}</p>

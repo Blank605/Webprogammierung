@@ -109,7 +109,8 @@
               </form>
               <div id="comments-container"></div>
 
-              <script>
+                
+            <script>
                 const form = document.getElementById('comment-form');
                 const commentInput = document.getElementById('comment-input');
                 const commentsContainer = document.getElementById('comments-container');
@@ -134,8 +135,8 @@
                 });
                 
                 function updateComments() {
-                  commentsContainer.innerHTML = '';
-                  comments.forEach(comment => {
+                    commentsContainer.innerHTML = '';
+                    comments.forEach(comment => {
                     const commentElement = document.createElement('div');
                     commentElement.innerHTML = `
                       <p>${comment.text}</p>
@@ -146,12 +147,12 @@
                 }
                 
                 fetch('/api/comments')
-                  .then(response => response.json())
-                  .then(data => {
-                    comments = data;
-                    updateComments();
-                  });
-              </script>
+                    .then(response => response.json())
+                    .then(data => {
+                        comments = data;
+                        updateComments();
+                    });
+            </script>
             <br>
             <br>
             <br>
